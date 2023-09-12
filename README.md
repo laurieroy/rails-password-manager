@@ -1,6 +1,6 @@
 # Password Manager
 
-This is a password manager built in Rails 7 
+This is a password manager built in Rails 7. This is my first time playing around with the new model-level encryption.
 
 Tech Stack
 CSS: tailwind
