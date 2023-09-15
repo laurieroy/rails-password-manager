@@ -1,3 +1,5 @@
+<%= link_to "← Back", root_path, class: "mb-4 block no-underline text-blue-500" %> 
+
 <div class="flex justify-between items-center mb-4">
   <h1 class="mb-0">
     <%= @password.url %>
@@ -7,17 +9,35 @@
       </svg>
     <% end %>
   </h1>
+  
   <%= link_to "Edit", edit_password_path %> 
 </div>
 
-<h6 class="">Username / Email</h6>
-<div class="flex gap-1">
+<h3 class="">Credentials</h3>
+
+<h6 class="text-xs mb-1">Username / Email</h6>
+
+<div class="flex items-center gap-1">
   <pre class="my-0 flex-grow"><code class="mt-0"><%= @password.username %></code></pre>
   <%= button_tag "Copy", class: "px-5 py-2.5 bg-gray-200 rounded", data: { controller: "clipboard", action: "click->clipboard#copy", clipboard_content_value: @password.username } %>
 </div>
 
-<h6 class ="">Password</h6>
-<div class="flex gap-1">
+<h6 class ="text-xs mb-1 mt-4">Password</h6>
+
+<div class="flex items-center gap-1">
   <pre class="my-0 flex-grow"><code class="mt-0"><%= @password.password %></code></pre>
   <%= button_tag "Copy", class: "px-5 py-2.5 bg-gray-200 rounded", data: { controller: "clipboard", action: "click->clipboard#copy", clipboard_content_value: @password.password } %>
+</div>
+
+<h3 class="">Share</h3>
+
+<div class="flex flex-col gap-1 divide-y divide-gray-200">
+  <%= link_to "Add a user", new_password_share_path(@password) %>
+
+  <% @password.users.excluding(current_user).each do |user| %>
+    <div class="flex items-center justify-between">
+      <%= link_to "Remove", password_share_path(@password, user), method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+    </div>
+    <div><%= @user.email %></div>
+  <% end %>
 </div>
