@@ -5,6 +5,7 @@ This is a password manager built in Rails 7. This is my first time playing aroun
 Tech Stack
 CSS: tailwind
 Database: Postgresql
+Icons: HeroIcons
 Ruby: 3.2.2
 User: Devise
 
@@ -36,3 +37,6 @@ To start up server + tailwind HMR:
   ```
   bin/dev
   ```  
+
+  TODO:
+  - Update UI - show page, add copy icon to button, tooltip for copied, so size doesn't change
