@@ -10,11 +10,10 @@
     <% end %>
   </h1>
   
-  <%= link_to "Edit", edit_password_path(@password) if @password.editable_by?(current_user) %> 
+  <%= link_to "Edit", edit_password_path(@password) if current_user_password.editable? %> 
 </div>
 
 <h3 class="">Credentials</h3>
-
 <h6 class="text-xs mb-1">Username / Email</h6>
 
 <div class="flex items-center gap-1">
@@ -32,7 +31,7 @@
 <div class="flex justify-between items-center mb-4 mt-8">
   <h3 class="my-0">Shared With:</h3>
 
-    <%= link_to "Add a user", new_password_share_path(@password) if @password.shareable_by?(current_user) %>
+    <%= link_to "Add a user", new_password_share_path(@password) if current_user_password.shareable? %>
 </div>
 
 <div class="flex flex-col gap-1 divide-y divide-gray-200">
@@ -40,7 +39,7 @@
     <div class="flex items-center justify-between">
       <div><%= user_password.user.email %></div>
       <div><%= user_password.role.titleize %></div>
-      <%= link_to "Remove", password_share_path(@password, user_password.user), method: :delete, data: { turbo_confirm: "Are you sure?" } if @password.shareable_by?(current_user) %>
+      <%= link_to "Remove", password_share_path(@password, user_password.user), method: :delete, data: { turbo_confirm: "Are you sure?" } if current_user_password.shareable? %>
     </div>
     
   <% end %>
