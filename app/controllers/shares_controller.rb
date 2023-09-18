@@ -29,7 +29,7 @@ before_action :set_password
   end
 
   def user_password_params
-    params.require(:user_password).permit(:user_id)
+    params.require(:user_password).permit(:user_id, :role)
     
   end
   
